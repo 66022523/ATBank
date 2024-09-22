@@ -99,26 +99,31 @@ public class Authentication extends javax.swing.JFrame {
         app.setIconTextGap(10);
 
         titleLabel.setBackground(new java.awt.Color(0, 153, 255));
-        titleLabel.setFont(new java.awt.Font("Leelawadee UI", 0, 24)); // NOI18N
+        titleLabel.setFont(new java.awt.Font("Kanit", 1, 24)); // NOI18N
         titleLabel.setForeground(new java.awt.Color(255, 255, 255));
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titleLabel.setText("คิดจะฝาก คิดถึง ATBank");
         titleLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        jLabel7.setFont(new java.awt.Font("Kanit", 0, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("ระบบธนาคารออนไลน์ โอนเร็ว ถอนง่าย ได้ไว!");
 
+        jLabel8.setFont(new java.awt.Font("Kanit", 0, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("เริ่มต้นง่าย ๆ ในไม่กี่คลิก");
 
+        jLabel9.setFont(new java.awt.Font("Kanit", 0, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/adhoccom/atbank/icons/checked-16.png"))); // NOI18N
         jLabel9.setText("สะดวก");
 
+        jLabel10.setFont(new java.awt.Font("Kanit", 0, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/adhoccom/atbank/icons/checked-16.png"))); // NOI18N
         jLabel10.setText("รวดเร็ว");
 
+        jLabel11.setFont(new java.awt.Font("Kanit", 0, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/adhoccom/atbank/icons/checked-16.png"))); // NOI18N
         jLabel11.setText("ปลอดภัย");
@@ -156,7 +161,7 @@ public class Authentication extends javax.swing.JFrame {
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel11)
-                .addContainerGap(262, Short.MAX_VALUE))
+                .addContainerGap(225, Short.MAX_VALUE))
         );
 
         getContentPane().add(welcome, java.awt.BorderLayout.LINE_START);
@@ -166,13 +171,14 @@ public class Authentication extends javax.swing.JFrame {
 
         signIn.setBackground(new java.awt.Color(241, 243, 249));
 
-        welcomeLabel.setFont(new java.awt.Font("Leelawadee UI", 0, 18)); // NOI18N
+        welcomeLabel.setFont(new java.awt.Font("Kanit", 1, 18)); // NOI18N
         welcomeLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/adhoccom/atbank/icons/waving-hand-24.png"))); // NOI18N
         welcomeLabel.setText("ยินดีต้อนรับ");
 
         IDPanel.setBackground(new java.awt.Color(241, 243, 249));
         IDPanel.setLayout(new java.awt.GridLayout(2, 0));
 
+        IDLabel.setFont(new java.awt.Font("Kanit", 0, 12)); // NOI18N
         IDLabel.setLabelFor(IDTextField);
         IDLabel.setText("เลขบัญชี");
         IDPanel.add(IDLabel);
@@ -184,6 +190,7 @@ public class Authentication extends javax.swing.JFrame {
         passwordPanel.setBackground(new java.awt.Color(241, 243, 249));
         passwordPanel.setLayout(new java.awt.GridLayout(2, 0));
 
+        passwordLabel.setFont(new java.awt.Font("Kanit", 0, 12)); // NOI18N
         passwordLabel.setText("รหัสผ่าน");
         passwordPanel.add(passwordLabel);
 
@@ -192,6 +199,7 @@ public class Authentication extends javax.swing.JFrame {
         passwordPanel.add(passwordPasswordField);
 
         signInButton.setBackground(new java.awt.Color(102, 0, 204));
+        signInButton.setFont(new java.awt.Font("Kanit", 0, 12)); // NOI18N
         signInButton.setForeground(new java.awt.Color(255, 255, 255));
         signInButton.setIcon(new FlatSVGIcon("com/adhoccom/atbank/icons/arrow-alt-circle-right.svg", 16, 16).setColorFilter(new ColorFilter(color -> new java.awt.Color(255, 255, 255)))
         );
@@ -208,10 +216,12 @@ public class Authentication extends javax.swing.JFrame {
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 0));
 
+        jLabel2.setFont(new java.awt.Font("Kanit", 0, 12)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("ยังไม่มีบัญชี?");
         jPanel1.add(jLabel2);
 
+        jLabel3.setFont(new java.awt.Font("Kanit", 0, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 204, 102));
         jLabel3.setText("สมัครสมาชิกเลย!");
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -234,7 +244,7 @@ public class Authentication extends javax.swing.JFrame {
                     .addComponent(signInResultLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(welcomeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(signInButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE))
                 .addGap(80, 80, 80))
         );
         signInLayout.setVerticalGroup(
@@ -251,7 +261,7 @@ public class Authentication extends javax.swing.JFrame {
                 .addComponent(signInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(219, Short.MAX_VALUE))
+                .addContainerGap(182, Short.MAX_VALUE))
         );
 
         authentication.add(signIn, "signIn");
@@ -366,7 +376,7 @@ public class Authentication extends javax.swing.JFrame {
                 .addComponent(signUpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(149, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         authentication.add(signUp, "signUp");
