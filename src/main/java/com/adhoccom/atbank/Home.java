@@ -8,6 +8,8 @@ import com.adhoccom.atbank.Main.Account;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.formdev.flatlaf.extras.FlatSVGIcon.ColorFilter;
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -60,14 +62,19 @@ public class Home extends javax.swing.JFrame {
         greetingLabel = new javax.swing.JLabel();
         nameLabel = new javax.swing.JLabel();
         contentsPanel = new javax.swing.JPanel();
-        depositPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         withdrawPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         transferPanel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         checkBalancePanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        depositPanel = new javax.swing.JPanel();
+        Header = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        Deposit = new javax.swing.JTextField();
+        Enter = new javax.swing.JButton();
+        Cancle = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ATBank");
@@ -83,8 +90,8 @@ public class Home extends javax.swing.JFrame {
         appLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/adhoccom/atbank/icons/credit-card-24.png"))); // NOI18N
         appLabel.setText("ATBank");
 
-        depositButton.setFont(new java.awt.Font("Kanit", 0, 12)); // NOI18N
         depositButton.setText("ฝาก");
+        depositButton.setActionCommand("ฝาก");
         depositButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         depositButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,7 +99,6 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        withdrawButton.setFont(new java.awt.Font("Kanit", 0, 12)); // NOI18N
         withdrawButton.setText("ถอน");
         withdrawButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         withdrawButton.addActionListener(new java.awt.event.ActionListener() {
@@ -101,7 +107,6 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        transferButton.setFont(new java.awt.Font("Kanit", 0, 12)); // NOI18N
         transferButton.setText("โอน");
         transferButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         transferButton.addActionListener(new java.awt.event.ActionListener() {
@@ -110,7 +115,6 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        checkBalanceButton.setFont(new java.awt.Font("Kanit", 0, 12)); // NOI18N
         checkBalanceButton.setText("เช็คยอด");
         checkBalanceButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         checkBalanceButton.addActionListener(new java.awt.event.ActionListener() {
@@ -119,7 +123,6 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        signOutButton.setFont(new java.awt.Font("Kanit", 1, 12)); // NOI18N
         signOutButton.setForeground(new java.awt.Color(255, 153, 0));
         signOutButton.setIcon(new FlatSVGIcon("com/adhoccom/atbank/icons/arrow-alt-circle-left.svg", 16, 16).setColorFilter(new ColorFilter(color -> new java.awt.Color(255, 153, 0)))
         );
@@ -136,7 +139,6 @@ public class Home extends javax.swing.JFrame {
         greetingPanel.setBackground(new java.awt.Color(102, 0, 204));
         greetingPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        greetingLabel.setFont(new java.awt.Font("Kanit", 0, 12)); // NOI18N
         greetingLabel.setForeground(new java.awt.Color(255, 255, 255));
         greetingLabel.setText("ยินดีต้อนรับคุณ");
         greetingPanel.add(greetingLabel);
@@ -176,7 +178,7 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(transferButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(checkBalanceButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 280, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
                 .addComponent(signOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -184,30 +186,6 @@ public class Home extends javax.swing.JFrame {
         getContentPane().add(sideBarPanel, java.awt.BorderLayout.LINE_START);
 
         contentsPanel.setLayout(new java.awt.CardLayout());
-
-        depositPanel.setBackground(new java.awt.Color(241, 243, 249));
-
-        jLabel1.setFont(new java.awt.Font("Kanit", 1, 24)); // NOI18N
-        jLabel1.setText("| ฝาก");
-
-        javax.swing.GroupLayout depositPanelLayout = new javax.swing.GroupLayout(depositPanel);
-        depositPanel.setLayout(depositPanelLayout);
-        depositPanelLayout.setHorizontalGroup(
-            depositPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(depositPanelLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel1)
-                .addContainerGap(523, Short.MAX_VALUE))
-        );
-        depositPanelLayout.setVerticalGroup(
-            depositPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(depositPanelLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel1)
-                .addContainerGap(560, Short.MAX_VALUE))
-        );
-
-        contentsPanel.add(depositPanel, "deposit");
 
         withdrawPanel.setBackground(new java.awt.Color(241, 243, 249));
 
@@ -221,14 +199,14 @@ public class Home extends javax.swing.JFrame {
             .addGroup(withdrawPanelLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(jLabel2)
-                .addContainerGap(521, Short.MAX_VALUE))
+                .addContainerGap(554, Short.MAX_VALUE))
         );
         withdrawPanelLayout.setVerticalGroup(
             withdrawPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(withdrawPanelLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(jLabel2)
-                .addContainerGap(560, Short.MAX_VALUE))
+                .addContainerGap(457, Short.MAX_VALUE))
         );
 
         contentsPanel.add(withdrawPanel, "withdraw");
@@ -245,14 +223,14 @@ public class Home extends javax.swing.JFrame {
             .addGroup(transferPanelLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(jLabel3)
-                .addContainerGap(528, Short.MAX_VALUE))
+                .addContainerGap(554, Short.MAX_VALUE))
         );
         transferPanelLayout.setVerticalGroup(
             transferPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(transferPanelLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(jLabel3)
-                .addContainerGap(560, Short.MAX_VALUE))
+                .addContainerGap(457, Short.MAX_VALUE))
         );
 
         contentsPanel.add(transferPanel, "transfer");
@@ -269,17 +247,115 @@ public class Home extends javax.swing.JFrame {
             .addGroup(checkBalancePanelLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(jLabel4)
-                .addContainerGap(482, Short.MAX_VALUE))
+                .addContainerGap(480, Short.MAX_VALUE))
         );
         checkBalancePanelLayout.setVerticalGroup(
             checkBalancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(checkBalancePanelLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(jLabel4)
-                .addContainerGap(560, Short.MAX_VALUE))
+                .addContainerGap(457, Short.MAX_VALUE))
         );
 
         contentsPanel.add(checkBalancePanel, "checkBalance");
+
+        depositPanel.setBackground(new java.awt.Color(204, 204, 255));
+
+        Header.setFont(new java.awt.Font("Leelawadee UI", 0, 24)); // NOI18N
+        Header.setText("| ฝากเงิน ");
+
+        jPanel1.setBackground(new java.awt.Color(153, 153, 255));
+
+        jLabel5.setFont(new java.awt.Font("Leelawadee UI", 0, 18)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("กรอกจำนวนเงินที่ต้องการฝาก");
+
+        Deposit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DepositActionPerformed(evt);
+            }
+        });
+
+        Enter.setBackground(new java.awt.Color(105, 177, 144));
+        Enter.setFont(new java.awt.Font("Leelawadee UI", 0, 18)); // NOI18N
+        Enter.setForeground(new java.awt.Color(255, 255, 255));
+        Enter.setText("ยืนยัน");
+        Enter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EnterActionPerformed(evt);
+            }
+        });
+
+        Cancle.setBackground(new java.awt.Color(233, 143, 143));
+        Cancle.setFont(new java.awt.Font("Leelawadee UI", 0, 18)); // NOI18N
+        Cancle.setForeground(new java.awt.Color(255, 255, 255));
+        Cancle.setText("ยกเลิก");
+        Cancle.setActionCommand("ยกเลิก");
+        Cancle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancleActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(Deposit, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(13, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(Enter, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Cancle, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
+                .addComponent(Deposit, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Enter, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Cancle, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout depositPanelLayout = new javax.swing.GroupLayout(depositPanel);
+        depositPanel.setLayout(depositPanelLayout);
+        depositPanelLayout.setHorizontalGroup(
+            depositPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(depositPanelLayout.createSequentialGroup()
+                .addGroup(depositPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(depositPanelLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(Header))
+                    .addGroup(depositPanelLayout.createSequentialGroup()
+                        .addGap(181, 181, 181)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(210, Short.MAX_VALUE))
+        );
+        depositPanelLayout.setVerticalGroup(
+            depositPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(depositPanelLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(Header)
+                .addGap(34, 34, 34)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(265, Short.MAX_VALUE))
+        );
+
+        contentsPanel.add(depositPanel, "deposit");
 
         getContentPane().add(contentsPanel, java.awt.BorderLayout.CENTER);
 
@@ -315,6 +391,34 @@ public class Home extends javax.swing.JFrame {
         java.awt.CardLayout card = (java.awt.CardLayout) contentsPanel.getLayout();
         card.show(contentsPanel, "deposit");
     }//GEN-LAST:event_depositButtonActionPerformed
+
+    private void EnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnterActionPerformed
+        JOptionPane.showMessageDialog(this, "ยืนยันจำนวนเงินที่ต้องการฝาก" +  Deposit.getText());
+    }//GEN-LAST:event_EnterActionPerformed
+
+    private void DepositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DepositActionPerformed
+        try {
+            // แปลงค่าจำนวนเงินจาก text field เป็นตัวเลข
+            double depositAmount = Double.parseDouble(Deposit.getText());
+            // ตรวจสอบว่าจำนวนเงินฝากเป็นบวก
+            if (depositAmount > 0) {
+                // เรียกใช้เมธอดใน Account เพื่อเพิ่มยอดเงิน
+                account.deposit(depositAmount);
+                // แสดงข้อความยืนยัน
+                JOptionPane.showMessageDialog(this, "ฝากเงินจำนวน " + depositAmount + " สำเร็จแล้ว");
+            } else {
+                // แสดงข้อความแจ้งเตือนหากจำนวนเงินไม่ถูกต้อง
+                JOptionPane.showMessageDialog(this, "กรุณากรอกจำนวนเงินที่ถูกต้อง", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (NumberFormatException e) {
+            // แสดงข้อความแจ้งเตือนหากกรอกข้อมูลไม่ถูกต้อง
+            JOptionPane.showMessageDialog(this, "กรุณากรอกจำนวนเงินที่ถูกต้อง", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_DepositActionPerformed
+
+    private void CancleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancleActionPerformed
+        Deposit.setText("");
+    }//GEN-LAST:event_CancleActionPerformed
 
     /**
      * @param args the command line arguments
@@ -353,6 +457,10 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Cancle;
+    private javax.swing.JTextField Deposit;
+    private javax.swing.JButton Enter;
+    private javax.swing.JLabel Header;
     private javax.swing.JLabel appLabel;
     private javax.swing.JButton checkBalanceButton;
     private javax.swing.JPanel checkBalancePanel;
@@ -361,10 +469,11 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel depositPanel;
     private javax.swing.JLabel greetingLabel;
     private javax.swing.JPanel greetingPanel;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JPanel sideBarPanel;
     private javax.swing.JButton signOutButton;
