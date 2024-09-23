@@ -8,6 +8,8 @@ import com.adhoccom.atbank.Main.Account;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.formdev.flatlaf.extras.FlatSVGIcon.ColorFilter;
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -67,7 +69,15 @@ public class Home extends javax.swing.JFrame {
         nameLabel = new javax.swing.JLabel();
         contentsPanel = new javax.swing.JPanel();
         depositPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        depositHeaderPanel = new javax.swing.JPanel();
+        depositTitleLabel = new javax.swing.JLabel();
+        depositDescriptionLabel = new javax.swing.JLabel();
+        depositBodyPanel = new javax.swing.JPanel();
+        depositAmountLabel = new javax.swing.JLabel();
+        depositSpinner = new javax.swing.JSpinner();
+        depositActionsPanel = new javax.swing.JPanel();
+        depositConfirm = new javax.swing.JButton();
+        depositCancle = new javax.swing.JButton();
         withdrawPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -126,7 +136,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        signOutButton.setFont(new java.awt.Font("Kanit", 1, 12)); // NOI18N
+        signOutButton.setFont(new java.awt.Font("Kanit", 0, 12)); // NOI18N
         signOutButton.setForeground(new java.awt.Color(255, 153, 0));
         signOutButton.setIcon(new FlatSVGIcon("com/adhoccom/atbank/icons/arrow-alt-circle-left.svg", 16, 16).setColorFilter(new ColorFilter(color -> new java.awt.Color(255, 153, 0)))
         );
@@ -192,26 +202,77 @@ public class Home extends javax.swing.JFrame {
         contentsPanel.setLayout(new java.awt.CardLayout());
 
         depositPanel.setBackground(new java.awt.Color(241, 243, 249));
+        depositPanel.setLayout(new java.awt.BorderLayout());
 
-        jLabel1.setFont(new java.awt.Font("Kanit", 1, 24)); // NOI18N
-        jLabel1.setText("| ฝาก");
+        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 10, 5);
+        flowLayout1.setAlignOnBaseline(true);
+        depositHeaderPanel.setLayout(flowLayout1);
 
-        javax.swing.GroupLayout depositPanelLayout = new javax.swing.GroupLayout(depositPanel);
-        depositPanel.setLayout(depositPanelLayout);
-        depositPanelLayout.setHorizontalGroup(
-            depositPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(depositPanelLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel1)
-                .addContainerGap(523, Short.MAX_VALUE))
+        depositTitleLabel.setFont(new java.awt.Font("Kanit", 1, 24)); // NOI18N
+        depositTitleLabel.setForeground(new java.awt.Color(102, 0, 204));
+        depositTitleLabel.setText("| ฝากเงิน ");
+        depositHeaderPanel.add(depositTitleLabel);
+
+        depositDescriptionLabel.setFont(new java.awt.Font("Kanit", 0, 12)); // NOI18N
+        depositDescriptionLabel.setText("ฝากเงินให้เป็นนิสัย อดออมไว้ใช้ในอนาคต");
+        depositHeaderPanel.add(depositDescriptionLabel);
+
+        depositPanel.add(depositHeaderPanel, java.awt.BorderLayout.PAGE_START);
+
+        depositAmountLabel.setFont(new java.awt.Font("Kanit", 0, 14)); // NOI18N
+        depositAmountLabel.setLabelFor(depositSpinner);
+        depositAmountLabel.setText("จำนวนเงิน");
+
+        depositSpinner.setFont(new java.awt.Font("Kanit", 0, 12)); // NOI18N
+        depositSpinner.setModel(new javax.swing.SpinnerNumberModel(100.0d, 100.0d, null, 100.0d));
+        depositSpinner.setEditor(new javax.swing.JSpinner.NumberEditor(depositSpinner, "000"));
+
+        javax.swing.GroupLayout depositBodyPanelLayout = new javax.swing.GroupLayout(depositBodyPanel);
+        depositBodyPanel.setLayout(depositBodyPanelLayout);
+        depositBodyPanelLayout.setHorizontalGroup(
+            depositBodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(depositBodyPanelLayout.createSequentialGroup()
+                .addGap(219, 219, 219)
+                .addGroup(depositBodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(depositAmountLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(depositSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(219, Short.MAX_VALUE))
         );
-        depositPanelLayout.setVerticalGroup(
-            depositPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(depositPanelLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel1)
-                .addContainerGap(560, Short.MAX_VALUE))
+        depositBodyPanelLayout.setVerticalGroup(
+            depositBodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(depositBodyPanelLayout.createSequentialGroup()
+                .addGap(179, 179, 179)
+                .addComponent(depositAmountLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(depositSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(160, Short.MAX_VALUE))
         );
+
+        depositPanel.add(depositBodyPanel, java.awt.BorderLayout.CENTER);
+
+        depositConfirm.setBackground(new java.awt.Color(102, 0, 204));
+        depositConfirm.setFont(new java.awt.Font("Kanit", 0, 12)); // NOI18N
+        depositConfirm.setForeground(new java.awt.Color(255, 255, 255));
+        depositConfirm.setText("ยืนยัน");
+        depositConfirm.setMargin(new java.awt.Insets(10, 20, 10, 20));
+        depositConfirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                depositConfirmActionPerformed(evt);
+            }
+        });
+        depositActionsPanel.add(depositConfirm);
+
+        depositCancle.setFont(new java.awt.Font("Kanit", 0, 12)); // NOI18N
+        depositCancle.setText("ยกเลิก");
+        depositCancle.setMargin(new java.awt.Insets(10, 20, 10, 20));
+        depositCancle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                depositCancleActionPerformed(evt);
+            }
+        });
+        depositActionsPanel.add(depositCancle);
+
+        depositPanel.add(depositActionsPanel, java.awt.BorderLayout.PAGE_END);
 
         contentsPanel.add(depositPanel, "deposit");
 
@@ -390,6 +451,14 @@ public class Home extends javax.swing.JFrame {
         javax.swing.JOptionPane.showMessageDialog(this, "Please enter the correct amount.");
     }
     }//GEN-LAST:event_jButton1ActionPerformed
+  
+    private void depositConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositConfirmActionPerformed
+        JOptionPane.showConfirmDialog(this, "ยืนยันจำนวนเงินที่ต้องการฝาก" +  depositSpinner.getValue());
+    }//GEN-LAST:event_depositConfirmActionPerformed
+
+    private void depositCancleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositCancleActionPerformed
+        depositSpinner.setValue(100);
+    }//GEN-LAST:event_depositCancleActionPerformed
 
     /**
      * @param args the command line arguments
@@ -433,8 +502,17 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton checkBalanceButton;
     private javax.swing.JPanel checkBalancePanel;
     private javax.swing.JPanel contentsPanel;
+    private javax.swing.JPanel depositActionsPanel;
+    private javax.swing.JLabel depositAmountLabel;
+    private javax.swing.JPanel depositBodyPanel;
     private javax.swing.JButton depositButton;
+    private javax.swing.JButton depositCancle;
+    private javax.swing.JButton depositConfirm;
+    private javax.swing.JLabel depositDescriptionLabel;
+    private javax.swing.JPanel depositHeaderPanel;
     private javax.swing.JPanel depositPanel;
+    private javax.swing.JSpinner depositSpinner;
+    private javax.swing.JLabel depositTitleLabel;
     private javax.swing.JLabel greetingLabel;
     private javax.swing.JPanel greetingPanel;
     private javax.swing.JButton jButton1;
