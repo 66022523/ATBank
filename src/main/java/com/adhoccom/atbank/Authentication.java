@@ -5,7 +5,7 @@
 package com.adhoccom.atbank;
 
 import com.adhoccom.atbank.Main.Account;
-import com.adhoccom.atbank.Main.User;
+import com.adhoccom.atbank.Main.Auth;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.formdev.flatlaf.extras.FlatSVGIcon.ColorFilter;
@@ -397,8 +397,8 @@ public class Authentication extends javax.swing.JFrame {
             return;
         }
 
-        User user = new User();
-        Account account = user.login(IDTextField.getText(), new String(passwordPasswordField.getPassword()));
+        Auth auth = new Auth();
+        Account account = auth.login(IDTextField.getText(), new String(passwordPasswordField.getPassword()));
 
         if (account != null) {
             setVisible(false);
@@ -427,12 +427,12 @@ public class Authentication extends javax.swing.JFrame {
             signUpResult.setText("Please enter your password");
             return;
         }
-        if (confirmPasswordPasswordField.getPassword().length == 0) {
-            signUpResult.setText("Please confirm your password again");
+        if (newPasswordPasswordField.getPassword().length < 6) {
+            signUpResult.setText("Requires a length greater than or equal to six.");
             return;
         }
-        if (confirmPasswordPasswordField.getPassword().length >= 6) {
-            signUpResult.setText("Requires a length greater than or equal to six.");
+        if (confirmPasswordPasswordField.getPassword().length == 0) {
+            signUpResult.setText("Please confirm your password again");
             return;
         }
         if (!(java.util.Arrays.equals(newPasswordPasswordField.getPassword(), confirmPasswordPasswordField.getPassword()))) {
@@ -440,8 +440,8 @@ public class Authentication extends javax.swing.JFrame {
             return;
         }
 
-        User user = new User();
-        Account account = user.register(nameTextField.getText(), new String(newPasswordPasswordField.getPassword()));
+        Auth auth = new Auth();
+        Account account = auth.register(nameTextField.getText(), new String(newPasswordPasswordField.getPassword()));
 
         if (account != null) {
             java.awt.CardLayout card = (java.awt.CardLayout) authentication.getLayout();
