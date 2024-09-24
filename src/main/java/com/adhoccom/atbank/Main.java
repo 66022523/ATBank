@@ -102,18 +102,17 @@ public class Main {
 
         public User() {
             String filename = "accounts.ser";
-            ArrayList<Account> object = null;
 
             try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename))) {
-                object = (ArrayList<Account>) in.readObject();
+                ArrayList<Account> object = (ArrayList<Account>) in.readObject();
+
+                if (object != null) {
+                    this.accounts.addAll(object);
+                }
             } catch (IOException e) {
                 System.out.println("Input: IOException is caught");
             } catch (ClassNotFoundException e) {
                 System.out.println("ClassNotFoundException is caught");
-            }
-
-            if (object != null) {
-                this.accounts.addAll(object);
             }
         }
 
