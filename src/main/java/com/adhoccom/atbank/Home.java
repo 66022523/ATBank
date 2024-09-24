@@ -89,6 +89,13 @@ public class Home extends javax.swing.JFrame {
         withdrawConfirmButton = new javax.swing.JButton();
         transferPanel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         checkBalancePanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -376,6 +383,89 @@ public class Home extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Kanit", 1, 24)); // NOI18N
         jLabel3.setText("| โอน");
 
+        jPanel1.setBackground(new java.awt.Color(153, 153, 255));
+
+        jLabel1.setBackground(new java.awt.Color(153, 153, 255));
+        jLabel1.setFont(new java.awt.Font("Kanit", 0, 14)); // NOI18N
+        jLabel1.setText("เลขบัญชี");
+
+        jFormattedTextField1.setText("jFormattedTextField1");
+        jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField1ActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Kanit", 0, 14)); // NOI18N
+        jLabel5.setText("จำนวนเงิน");
+
+        jFormattedTextField2.setText("jFormattedTextField2");
+        jFormattedTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField2ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setBackground(new java.awt.Color(204, 0, 51));
+        jButton1.setFont(new java.awt.Font("Kanit", 0, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("ยกเลิก");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setBackground(new java.awt.Color(0, 204, 0));
+        jButton2.setFont(new java.awt.Font("Kanit", 0, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("ยืนยัน");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jFormattedTextField2)
+                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(86, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout transferPanelLayout = new javax.swing.GroupLayout(transferPanel);
         transferPanel.setLayout(transferPanelLayout);
         transferPanelLayout.setHorizontalGroup(
@@ -383,14 +473,20 @@ public class Home extends javax.swing.JFrame {
             .addGroup(transferPanelLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(jLabel3)
-                .addContainerGap(528, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, transferPanelLayout.createSequentialGroup()
+                .addContainerGap(126, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60))
         );
         transferPanelLayout.setVerticalGroup(
             transferPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(transferPanelLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(jLabel3)
-                .addContainerGap(451, Short.MAX_VALUE))
+                .addGap(44, 44, 44)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(173, Short.MAX_VALUE))
         );
 
         contentsPanel.add(transferPanel, "transfer");
@@ -482,6 +578,109 @@ public class Home extends javax.swing.JFrame {
         depositSpinner.setValue(100);
     }//GEN-LAST:event_depositCancleActionPerformed
 
+    private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
+        String accountNumber = jFormattedTextField1.getText().trim();
+    
+    // Check if the account number matches a specific format (e.g., only digits, 10 characters)
+    if (accountNumber.matches("\\d{10}")) {
+        // Valid account number, process the input
+        System.out.println("Valid account number: " + accountNumber);
+        // You can add further code here to handle the account number (e.g., save to a database)
+    } else {
+        // Invalid account number, show an error message
+        javax.swing.JOptionPane.showMessageDialog(this, 
+            "Invalid account number. Please enter a 10-digit number.", 
+            "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_jFormattedTextField1ActionPerformed
+
+    private void jFormattedTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField2ActionPerformed
+     // Get the text from the formatted field and trim any spaces
+    String amountText = jFormattedTextField2.getText().trim();
+
+    try {
+        // Convert the string to a number (double) to represent the monetary value
+        double amount = Double.parseDouble(amountText);
+        
+        // Check if the amount is greater than 0 (valid amount)
+        if (amount > 0) {
+            // Process the valid amount
+            System.out.println("Valid amount: " + amount);
+            // You can add further code here to handle the amount (e.g., save to a database)
+        } else {
+            // Show an error message for negative or zero amounts
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "Amount must be greater than zero.", 
+                "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    } catch (NumberFormatException e) {
+        // Show an error message if the input is not a valid number
+        javax.swing.JOptionPane.showMessageDialog(this, 
+            "Invalid amount. Please enter a valid number.", 
+            "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_jFormattedTextField2ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+         // สมมติว่ามีฟิลด์ข้อมูลที่ต้องยืนยัน เช่น หมายเลขบัญชีและจำนวนเงิน
+    String accountNumber = jFormattedTextField1.getText().trim();
+    String amountText = jFormattedTextField2.getText().trim();
+
+    // ตรวจสอบข้อมูลในฟิลด์ หมายเลขบัญชี
+    if (!accountNumber.matches("\\d{10}")) {
+        // แสดงข้อผิดพลาดหากหมายเลขบัญชีไม่ถูกต้อง (ต้องเป็นตัวเลข 10 หลัก)
+        javax.swing.JOptionPane.showMessageDialog(this, 
+            "หมายเลขบัญชีไม่ถูกต้อง. กรุณาใส่หมายเลขบัญชี 10 หลัก.", 
+            "ข้อผิดพลาด", javax.swing.JOptionPane.ERROR_MESSAGE);
+        return; // หยุดการทำงานหากข้อมูลไม่ถูกต้อง
+    }
+
+    try {
+        // แปลงจำนวนเงินจากข้อความเป็น double
+        double amount = Double.parseDouble(amountText);
+
+        // ตรวจสอบว่าจำนวนเงินต้องมากกว่า 0
+        if (amount <= 0) {
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "กรุณากรอกจำนวนเงินที่มากกว่า 0.", 
+                "ข้อผิดพลาด", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return; // หยุดการทำงานหากข้อมูลไม่ถูกต้อง
+        }
+
+        // ถ้าทุกอย่างถูกต้อง แสดงข้อความยืนยัน
+        javax.swing.JOptionPane.showMessageDialog(this, 
+            "ยืนยันข้อมูลเรียบร้อย!\n\nหมายเลขบัญชี: " + accountNumber + "\nจำนวนเงิน: " + amount,
+            "ยืนยันสำเร็จ", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+        // เพิ่มโค้ดอื่น ๆ สำหรับการประมวลผลข้อมูลที่ยืนยันแล้ว เช่น การบันทึกลงฐานข้อมูล
+        System.out.println("ข้อมูลที่ยืนยัน: หมายเลขบัญชี " + accountNumber + ", จำนวนเงิน " + amount);
+
+    } catch (NumberFormatException e) {
+        // แสดงข้อผิดพลาดหากจำนวนเงินไม่ถูกต้อง (ไม่ใช่ตัวเลข)
+        javax.swing.JOptionPane.showMessageDialog(this, 
+            "กรุณากรอกจำนวนเงินที่ถูกต้อง.", 
+            "ข้อผิดพลาด", javax.swing.JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       // แสดงการยืนยันการยกเลิกให้กับผู้ใช้
+    int response = javax.swing.JOptionPane.showConfirmDialog(this, 
+        "คุณต้องการยกเลิกการทำงานหรือไม่?", 
+        "ยืนยันการยกเลิก", 
+        javax.swing.JOptionPane.YES_NO_OPTION);
+
+    // หากผู้ใช้เลือก 'ใช่' (YES)
+    if (response == javax.swing.JOptionPane.YES_OPTION) {
+        // ปิดฟอร์มหรือทำการยกเลิกการทำงาน
+        System.out.println("การทำงานถูกยกเลิก");
+        this.dispose();  // ใช้ในการปิดฟอร์มปัจจุบัน
+    } else {
+        // หากผู้ใช้เลือก 'ไม่' (NO) ให้ทำงานต่อไป
+        System.out.println("การทำงานยังดำเนินการต่อ");
+    }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -540,6 +739,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel greetingPanel;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JPanel sideBarPanel;
     private javax.swing.JButton signOutButton;
@@ -559,3 +760,4 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel withdrawTitleLabel;
     // End of variables declaration//GEN-END:variables
 }
+
