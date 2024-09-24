@@ -5,6 +5,7 @@
 package com.adhoccom.atbank;
 
 import com.adhoccom.atbank.Main.Account;
+import com.adhoccom.atbank.Main.Auth;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.formdev.flatlaf.extras.FlatSVGIcon.ColorFilter;
@@ -15,7 +16,7 @@ import com.formdev.flatlaf.extras.FlatSVGIcon.ColorFilter;
  */
 public class Home extends javax.swing.JFrame {
 
-    private Account account;
+    private final Account account;
 
     /**
      * Creates new form Home
@@ -39,9 +40,13 @@ public class Home extends javax.swing.JFrame {
 
         nameLabel.setText(this.account.getName());
 
-        double balance = this.account.checkBalance();
-        depositBalanceLabel.setText(balance + " ฿");
-        withdrawBalanceLabel.setText(balance + " ฿");
+        depositBalanceLabel.setText(this.account.balance + " ฿");
+        withdrawBalanceLabel.setText(this.account.balance + " ฿");
+        transferBalanceLabel.setText(this.account.balance + " ฿");
+
+        balanceLabel.setText(this.account.balance + " ฿");
+        depositLabel.setText("+" + this.account.deposit + " ฿");
+        withdrawLabel.setText("-" + this.account.withdraw + " ฿");
     }
 
     /**
@@ -75,7 +80,6 @@ public class Home extends javax.swing.JFrame {
         depositSpinner = new javax.swing.JSpinner();
         depositFooterPanel = new javax.swing.JPanel();
         depositConfirm = new javax.swing.JButton();
-        depositCancle = new javax.swing.JButton();
         withdrawPanel = new javax.swing.JPanel();
         withdrawHeaderPanel = new javax.swing.JPanel();
         withdrawTitleLabel = new javax.swing.JLabel();
@@ -88,16 +92,29 @@ public class Home extends javax.swing.JFrame {
         withdrawFooterPanel = new javax.swing.JPanel();
         withdrawConfirmButton = new javax.swing.JButton();
         transferPanel = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        transferHeaderPanel = new javax.swing.JPanel();
+        transferTitleLabel = new javax.swing.JLabel();
+        transferDescriptionLabel = new javax.swing.JLabel();
+        transferBodyPanel = new javax.swing.JPanel();
+        transferBalanceTextLabel = new javax.swing.JLabel();
+        transferBalanceLabel = new javax.swing.JLabel();
+        accountNumberLabel = new javax.swing.JLabel();
+        accountNumberFormattedTextField = new javax.swing.JFormattedTextField();
+        transferAmountLabel = new javax.swing.JLabel();
+        transferSpinner = new javax.swing.JSpinner();
+        transferFooterPanel = new javax.swing.JPanel();
+        transferConfirmButton = new javax.swing.JButton();
         checkBalancePanel = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        checkBalanceHeaderPanel = new javax.swing.JPanel();
+        checkBaanceTitleLabel = new javax.swing.JLabel();
+        checkBalanceDescriptionLabel = new javax.swing.JLabel();
+        checkBalanceBodyPanel = new javax.swing.JPanel();
+        balanceNameLabel = new javax.swing.JLabel();
+        balanceLabel = new javax.swing.JLabel();
+        depositNameLabel = new javax.swing.JLabel();
+        depositLabel = new javax.swing.JLabel();
+        withdrawNameLabel = new javax.swing.JLabel();
+        withdrawLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ATBank");
@@ -233,17 +250,17 @@ public class Home extends javax.swing.JFrame {
 
         depositPanel.add(depositHeaderPanel, java.awt.BorderLayout.PAGE_START);
 
-        depositBalanceTextLabel.setFont(new java.awt.Font("Kanit", 0, 12)); // NOI18N
+        depositBalanceTextLabel.setFont(new java.awt.Font("Kanit", 0, 14)); // NOI18N
         depositBalanceTextLabel.setText("ยอดเงินคงเหลือ");
 
-        depositBalanceLabel.setFont(new java.awt.Font("Kanit", 0, 12)); // NOI18N
+        depositBalanceLabel.setFont(new java.awt.Font("Kanit", 1, 14)); // NOI18N
         depositBalanceLabel.setText("0 ฿");
 
-        depositAmountLabel.setFont(new java.awt.Font("Kanit", 0, 12)); // NOI18N
+        depositAmountLabel.setFont(new java.awt.Font("Kanit", 0, 14)); // NOI18N
         depositAmountLabel.setLabelFor(depositSpinner);
         depositAmountLabel.setText("จำนวนเงิน");
 
-        depositSpinner.setFont(new java.awt.Font("Kanit", 0, 12)); // NOI18N
+        depositSpinner.setFont(new java.awt.Font("Kanit", 0, 14)); // NOI18N
         depositSpinner.setModel(new javax.swing.SpinnerNumberModel(100.0d, 100.0d, null, 100.0d));
         depositSpinner.setEditor(new javax.swing.JSpinner.NumberEditor(depositSpinner, "000"));
 
@@ -254,11 +271,15 @@ public class Home extends javax.swing.JFrame {
             .addGroup(depositBodyPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(depositBodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(depositBalanceTextLabel)
-                    .addComponent(depositBalanceLabel)
-                    .addComponent(depositAmountLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(depositSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(432, 432, 432))
+                    .addGroup(depositBodyPanelLayout.createSequentialGroup()
+                        .addGroup(depositBodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(depositBalanceTextLabel)
+                            .addComponent(depositBalanceLabel)
+                            .addComponent(depositAmountLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                        .addGap(432, 432, 432))
+                    .addGroup(depositBodyPanelLayout.createSequentialGroup()
+                        .addComponent(depositSpinner, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         depositBodyPanelLayout.setVerticalGroup(
             depositBodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -271,7 +292,7 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(depositAmountLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(depositSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(280, Short.MAX_VALUE))
+                .addContainerGap(271, Short.MAX_VALUE))
         );
 
         depositPanel.add(depositBodyPanel, java.awt.BorderLayout.CENTER);
@@ -287,16 +308,6 @@ public class Home extends javax.swing.JFrame {
             }
         });
         depositFooterPanel.add(depositConfirm);
-
-        depositCancle.setFont(new java.awt.Font("Kanit", 0, 12)); // NOI18N
-        depositCancle.setText("ยกเลิก");
-        depositCancle.setMargin(new java.awt.Insets(10, 20, 10, 20));
-        depositCancle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                depositCancleActionPerformed(evt);
-            }
-        });
-        depositFooterPanel.add(depositCancle);
 
         depositPanel.add(depositFooterPanel, java.awt.BorderLayout.PAGE_END);
 
@@ -320,16 +331,16 @@ public class Home extends javax.swing.JFrame {
 
         withdrawPanel.add(withdrawHeaderPanel, java.awt.BorderLayout.PAGE_START);
 
-        withdrawBalanceTextLabel.setFont(new java.awt.Font("Kanit", 0, 12)); // NOI18N
+        withdrawBalanceTextLabel.setFont(new java.awt.Font("Kanit", 0, 14)); // NOI18N
         withdrawBalanceTextLabel.setText("ยอดเงินคงเหลือ");
 
-        withdrawBalanceLabel.setFont(new java.awt.Font("Kanit", 0, 12)); // NOI18N
+        withdrawBalanceLabel.setFont(new java.awt.Font("Kanit", 1, 14)); // NOI18N
         withdrawBalanceLabel.setText("0 ฿");
 
-        withdrawAmountLabel.setFont(new java.awt.Font("Kanit", 0, 12)); // NOI18N
+        withdrawAmountLabel.setFont(new java.awt.Font("Kanit", 0, 14)); // NOI18N
         withdrawAmountLabel.setText("จำนวนเงิน");
 
-        withdrawSpinner.setFont(new java.awt.Font("Kanit", 0, 12)); // NOI18N
+        withdrawSpinner.setFont(new java.awt.Font("Kanit", 0, 14)); // NOI18N
         withdrawSpinner.setModel(new javax.swing.SpinnerNumberModel(100.0d, 100.0d, null, 100.0d));
         withdrawSpinner.setEditor(new javax.swing.JSpinner.NumberEditor(withdrawSpinner, "000"));
 
@@ -340,11 +351,15 @@ public class Home extends javax.swing.JFrame {
             .addGroup(withdrawBodyPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(withdrawBodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(withdrawSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(withdrawBalanceTextLabel)
-                    .addComponent(withdrawBalanceLabel)
-                    .addComponent(withdrawAmountLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(432, 432, 432))
+                    .addGroup(withdrawBodyPanelLayout.createSequentialGroup()
+                        .addGroup(withdrawBodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(withdrawBalanceTextLabel)
+                            .addComponent(withdrawBalanceLabel)
+                            .addComponent(withdrawAmountLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                        .addGap(432, 432, 432))
+                    .addGroup(withdrawBodyPanelLayout.createSequentialGroup()
+                        .addComponent(withdrawSpinner, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         withdrawBodyPanelLayout.setVerticalGroup(
             withdrawBodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -357,7 +372,7 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(withdrawAmountLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(withdrawSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(280, Short.MAX_VALUE))
+                .addContainerGap(271, Short.MAX_VALUE))
         );
 
         withdrawPanel.add(withdrawBodyPanel, java.awt.BorderLayout.CENTER);
@@ -379,139 +394,163 @@ public class Home extends javax.swing.JFrame {
         contentsPanel.add(withdrawPanel, "withdraw");
 
         transferPanel.setBackground(new java.awt.Color(241, 243, 249));
+        transferPanel.setLayout(new java.awt.BorderLayout());
 
-        jLabel3.setFont(new java.awt.Font("Kanit", 1, 24)); // NOI18N
-        jLabel3.setText("| โอน");
+        java.awt.FlowLayout flowLayout4 = new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 10, 5);
+        flowLayout4.setAlignOnBaseline(true);
+        transferHeaderPanel.setLayout(flowLayout4);
 
-        jPanel1.setBackground(new java.awt.Color(153, 153, 255));
+        transferTitleLabel.setFont(new java.awt.Font("Kanit", 1, 24)); // NOI18N
+        transferTitleLabel.setForeground(new java.awt.Color(102, 0, 204));
+        transferTitleLabel.setText("| โอน");
+        transferHeaderPanel.add(transferTitleLabel);
 
-        jLabel1.setBackground(new java.awt.Color(153, 153, 255));
-        jLabel1.setFont(new java.awt.Font("Kanit", 0, 14)); // NOI18N
-        jLabel1.setText("เลขบัญชี");
+        transferDescriptionLabel.setFont(new java.awt.Font("Kanit", 0, 12)); // NOI18N
+        transferDescriptionLabel.setText("โอนเงินจากบัญชีนี้ไปยังบัญชีอื่น");
+        transferHeaderPanel.add(transferDescriptionLabel);
 
-        jFormattedTextField1.setText("jFormattedTextField1");
-        jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField1ActionPerformed(evt);
-            }
-        });
+        transferPanel.add(transferHeaderPanel, java.awt.BorderLayout.PAGE_START);
 
-        jLabel5.setFont(new java.awt.Font("Kanit", 0, 14)); // NOI18N
-        jLabel5.setText("จำนวนเงิน");
+        transferBalanceTextLabel.setFont(new java.awt.Font("Kanit", 0, 14)); // NOI18N
+        transferBalanceTextLabel.setText("ยอดคงเหลือ");
 
-        jFormattedTextField2.setText("jFormattedTextField2");
-        jFormattedTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField2ActionPerformed(evt);
-            }
-        });
+        transferBalanceLabel.setFont(new java.awt.Font("Kanit", 1, 14)); // NOI18N
+        transferBalanceLabel.setText("0 ฿");
 
-        jButton1.setBackground(new java.awt.Color(204, 0, 51));
-        jButton1.setFont(new java.awt.Font("Kanit", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("ยกเลิก");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        accountNumberLabel.setFont(new java.awt.Font("Kanit", 0, 14)); // NOI18N
+        accountNumberLabel.setText("เลขบัญชี");
 
-        jButton2.setBackground(new java.awt.Color(0, 204, 0));
-        jButton2.setFont(new java.awt.Font("Kanit", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("ยืนยัน");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
+        transferAmountLabel.setFont(new java.awt.Font("Kanit", 0, 14)); // NOI18N
+        transferAmountLabel.setText("จำนวนเงิน");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        transferSpinner.setModel(new javax.swing.SpinnerNumberModel(100.0d, 100.0d, null, 100.0d));
+
+        javax.swing.GroupLayout transferBodyPanelLayout = new javax.swing.GroupLayout(transferBodyPanel);
+        transferBodyPanel.setLayout(transferBodyPanelLayout);
+        transferBodyPanelLayout.setHorizontalGroup(
+            transferBodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(transferBodyPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jFormattedTextField2)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGroup(transferBodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(transferBodyPanelLayout.createSequentialGroup()
+                        .addGroup(transferBodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(transferBalanceLabel)
+                            .addComponent(transferAmountLabel)
+                            .addComponent(transferBalanceTextLabel)
+                            .addComponent(accountNumberLabel))
+                        .addGap(0, 506, Short.MAX_VALUE))
+                    .addComponent(accountNumberFormattedTextField)
+                    .addComponent(transferSpinner))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(86, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        transferBodyPanelLayout.setVerticalGroup(
+            transferBodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(transferBodyPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(transferBalanceTextLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5)
+                .addComponent(transferBalanceLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(accountNumberLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addComponent(accountNumberFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(transferAmountLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(transferSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(196, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout transferPanelLayout = new javax.swing.GroupLayout(transferPanel);
-        transferPanel.setLayout(transferPanelLayout);
-        transferPanelLayout.setHorizontalGroup(
-            transferPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(transferPanelLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, transferPanelLayout.createSequentialGroup()
-                .addContainerGap(126, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60))
-        );
-        transferPanelLayout.setVerticalGroup(
-            transferPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(transferPanelLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel3)
-                .addGap(44, 44, 44)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(173, Short.MAX_VALUE))
-        );
+        transferPanel.add(transferBodyPanel, java.awt.BorderLayout.CENTER);
+
+        transferConfirmButton.setBackground(new java.awt.Color(102, 0, 204));
+        transferConfirmButton.setFont(new java.awt.Font("Kanit", 0, 12)); // NOI18N
+        transferConfirmButton.setForeground(new java.awt.Color(255, 255, 255));
+        transferConfirmButton.setText("โอน");
+        transferConfirmButton.setMargin(new java.awt.Insets(10, 20, 10, 20));
+        transferConfirmButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transferConfirmButtonActionPerformed(evt);
+            }
+        });
+        transferFooterPanel.add(transferConfirmButton);
+
+        transferPanel.add(transferFooterPanel, java.awt.BorderLayout.PAGE_END);
 
         contentsPanel.add(transferPanel, "transfer");
 
         checkBalancePanel.setBackground(new java.awt.Color(241, 243, 249));
+        checkBalancePanel.setLayout(new java.awt.BorderLayout());
 
-        jLabel4.setFont(new java.awt.Font("Kanit", 1, 24)); // NOI18N
-        jLabel4.setText("| เช็คยอด");
+        java.awt.FlowLayout flowLayout3 = new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 10, 5);
+        flowLayout3.setAlignOnBaseline(true);
+        checkBalanceHeaderPanel.setLayout(flowLayout3);
 
-        javax.swing.GroupLayout checkBalancePanelLayout = new javax.swing.GroupLayout(checkBalancePanel);
-        checkBalancePanel.setLayout(checkBalancePanelLayout);
-        checkBalancePanelLayout.setHorizontalGroup(
-            checkBalancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(checkBalancePanelLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel4)
-                .addContainerGap(482, Short.MAX_VALUE))
+        checkBaanceTitleLabel.setFont(new java.awt.Font("Kanit", 1, 24)); // NOI18N
+        checkBaanceTitleLabel.setForeground(new java.awt.Color(102, 0, 204));
+        checkBaanceTitleLabel.setText("| เช็คยอด");
+        checkBalanceHeaderPanel.add(checkBaanceTitleLabel);
+
+        checkBalanceDescriptionLabel.setFont(new java.awt.Font("Kanit", 0, 12)); // NOI18N
+        checkBalanceDescriptionLabel.setText("สำรวจยอดรวมในบัญชีของคุณ");
+        checkBalanceHeaderPanel.add(checkBalanceDescriptionLabel);
+
+        checkBalancePanel.add(checkBalanceHeaderPanel, java.awt.BorderLayout.PAGE_START);
+
+        balanceNameLabel.setFont(new java.awt.Font("Kanit", 0, 14)); // NOI18N
+        balanceNameLabel.setText("ยอดเงินคงเหลือ");
+
+        balanceLabel.setFont(new java.awt.Font("Kanit", 1, 14)); // NOI18N
+        balanceLabel.setText("0 ฿");
+
+        depositNameLabel.setFont(new java.awt.Font("Kanit", 0, 14)); // NOI18N
+        depositNameLabel.setText("ยอดเงินฝาก");
+
+        depositLabel.setFont(new java.awt.Font("Kanit", 1, 14)); // NOI18N
+        depositLabel.setForeground(new java.awt.Color(0, 255, 0));
+        depositLabel.setText("+0 ฿");
+
+        withdrawNameLabel.setFont(new java.awt.Font("Kanit", 0, 14)); // NOI18N
+        withdrawNameLabel.setText("ยอดเงินถอน");
+
+        withdrawLabel.setFont(new java.awt.Font("Kanit", 1, 14)); // NOI18N
+        withdrawLabel.setForeground(new java.awt.Color(255, 0, 0));
+        withdrawLabel.setText("-0 ฿");
+
+        javax.swing.GroupLayout checkBalanceBodyPanelLayout = new javax.swing.GroupLayout(checkBalanceBodyPanel);
+        checkBalanceBodyPanel.setLayout(checkBalanceBodyPanelLayout);
+        checkBalanceBodyPanelLayout.setHorizontalGroup(
+            checkBalanceBodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(checkBalanceBodyPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(checkBalanceBodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(balanceNameLabel)
+                    .addComponent(balanceLabel)
+                    .addComponent(depositNameLabel)
+                    .addComponent(depositLabel)
+                    .addComponent(withdrawNameLabel)
+                    .addComponent(withdrawLabel))
+                .addContainerGap(492, Short.MAX_VALUE))
         );
-        checkBalancePanelLayout.setVerticalGroup(
-            checkBalancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(checkBalancePanelLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel4)
-                .addContainerGap(451, Short.MAX_VALUE))
+        checkBalanceBodyPanelLayout.setVerticalGroup(
+            checkBalanceBodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(checkBalanceBodyPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(balanceNameLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(balanceLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(depositNameLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(depositLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(withdrawNameLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(withdrawLabel)
+                .addContainerGap(273, Short.MAX_VALUE))
         );
+
+        checkBalancePanel.add(checkBalanceBodyPanel, java.awt.BorderLayout.CENTER);
 
         contentsPanel.add(checkBalancePanel, "checkBalance");
 
@@ -520,166 +559,126 @@ public class Home extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void depositButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositButtonActionPerformed
+        java.awt.CardLayout card = (java.awt.CardLayout) contentsPanel.getLayout();
+        card.show(contentsPanel, "deposit");
+    }//GEN-LAST:event_depositButtonActionPerformed
+
     private void withdrawButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_withdrawButtonActionPerformed
-        // TODO add your handling code here:
         java.awt.CardLayout card = (java.awt.CardLayout) contentsPanel.getLayout();
         card.show(contentsPanel, "withdraw");
     }//GEN-LAST:event_withdrawButtonActionPerformed
 
     private void transferButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferButtonActionPerformed
-        // TODO add your handling code here:
         java.awt.CardLayout card = (java.awt.CardLayout) contentsPanel.getLayout();
         card.show(contentsPanel, "transfer");
     }//GEN-LAST:event_transferButtonActionPerformed
 
     private void checkBalanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBalanceButtonActionPerformed
-
+        java.awt.CardLayout card = (java.awt.CardLayout) contentsPanel.getLayout();
+        card.show(contentsPanel, "checkBalance");
     }//GEN-LAST:event_checkBalanceButtonActionPerformed
 
     private void signOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signOutButtonActionPerformed
-        // TODO add your handling code here:
         setVisible(false);
         new Authentication().setVisible(true);
     }//GEN-LAST:event_signOutButtonActionPerformed
 
-    private void depositButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositButtonActionPerformed
-        // TODO add your handling code here:
-        java.awt.CardLayout card = (java.awt.CardLayout) contentsPanel.getLayout();
-        card.show(contentsPanel, "deposit");
-    }//GEN-LAST:event_depositButtonActionPerformed
+    private void depositConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositConfirmActionPerformed
+        String amountText = depositSpinner.getValue().toString();
+
+        try {
+            double amount = Double.parseDouble(amountText);
+            int confirmDialog = javax.swing.JOptionPane.showConfirmDialog(this, "ยืนยันจำนวนเงินที่ต้องการฝาก " + amountText);
+
+            if (amount <= 0) {
+                javax.swing.JOptionPane.showMessageDialog(this, "กรุณากรอกจำนวนเงินที่ต้องการถอนของคุณที่มากกว่า 0", "ข้อผิดพลาด", javax.swing.JOptionPane.ERROR_MESSAGE);
+            } else if (confirmDialog == javax.swing.JOptionPane.OK_OPTION) {
+                this.account.deposit(amount);
+                depositBalanceLabel.setText(this.account.balance + " ฿");
+                balanceLabel.setText(this.account.balance + " ฿");
+                depositLabel.setText("+" + this.account.deposit + " ฿");
+
+                javax.swing.JOptionPane.showMessageDialog(this, "ฝากเงินเป็นจำนวน " + amountText + " เรียบร้อยแล้ว", "ฝากสำเร็จ", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (NumberFormatException error) {
+            javax.swing.JOptionPane.showMessageDialog(this, "กรุณากรอกจำนวนเงินเป็นตัวเลข",
+                    "ข้อผิดพลาด", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_depositConfirmActionPerformed
 
     private void withdrawConfirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_withdrawConfirmButtonActionPerformed
         String amountText = withdrawSpinner.getValue().toString();
 
         try {
             double amount = Double.parseDouble(amountText);
-            double currentBalance = account.checkBalance();
+            int confirmDialog = javax.swing.JOptionPane.showConfirmDialog(this, "ยืนยันจำนวนเงินที่ต้องการถอน " + amountText);
 
             if (amount <= 0) {
-                javax.swing.JOptionPane.showMessageDialog(this, "The amount must be more than 0");
-            } else if (amount > currentBalance) {
-                javax.swing.JOptionPane.showMessageDialog(this, "The remaining balance is not enough.");
-            } else {
-                account.withdraw(amount);
-                withdrawBalanceLabel.setText(account.checkBalance() + " ฿");
+                javax.swing.JOptionPane.showMessageDialog(this, "กรุณากรอกจำนวนเงินที่ต้องการถอนของคุณที่มากกว่า 0");
+            } else if (amount > this.account.balance) {
+                javax.swing.JOptionPane.showMessageDialog(this, "ยอดเงินคงเหลือในบัญชีของคุณไม่เพียงพอ");
+            } else if (confirmDialog == javax.swing.JOptionPane.OK_OPTION) {
+                this.account.withdraw(amount);
+                withdrawBalanceLabel.setText(this.account.balance + " ฿");
+                balanceLabel.setText(this.account.balance + " ฿");
+                withdrawLabel.setText("-" + this.account.withdraw + " ฿");
 
-                javax.swing.JOptionPane.showMessageDialog(this, "Successful withdrawal");
+                javax.swing.JOptionPane.showMessageDialog(this, "ถอนเงินเป็นจำนวน " + amountText + " เรียบร้อยแล้ว", "ถอนสำเร็จ", javax.swing.JOptionPane.INFORMATION_MESSAGE);
             }
-        } catch (NumberFormatException e) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Please enter the correct amount.");
+        } catch (NumberFormatException error) {
+            javax.swing.JOptionPane.showMessageDialog(this, "กรุณากรอกจำนวนเงินเป็นตัวเลข",
+                    "ข้อผิดพลาด", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_withdrawConfirmButtonActionPerformed
 
-    private void depositConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositConfirmActionPerformed
-        javax.swing.JOptionPane.showConfirmDialog(this, "ยืนยันจำนวนเงินที่ต้องการฝาก" + depositSpinner.getValue().toString());
-    }//GEN-LAST:event_depositConfirmActionPerformed
+    private void transferConfirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferConfirmButtonActionPerformed
+        // สมมติว่ามีฟิลด์ข้อมูลที่ต้องยืนยัน เช่น หมายเลขบัญชีและจำนวนเงิน
+        String accountNumber = accountNumberFormattedTextField.getText().trim();
+        String amountText = transferSpinner.getValue().toString();
+        Auth auth = new Auth();
 
-    private void depositCancleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositCancleActionPerformed
-        depositSpinner.setValue(100);
-    }//GEN-LAST:event_depositCancleActionPerformed
-
-    private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
-        String accountNumber = jFormattedTextField1.getText().trim();
-    
-    // Check if the account number matches a specific format (e.g., only digits, 10 characters)
-    if (accountNumber.matches("\\d{10}")) {
-        // Valid account number, process the input
-        System.out.println("Valid account number: " + accountNumber);
-        // You can add further code here to handle the account number (e.g., save to a database)
-    } else {
-        // Invalid account number, show an error message
-        javax.swing.JOptionPane.showMessageDialog(this, 
-            "Invalid account number. Please enter a 10-digit number.", 
-            "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-    }
-    }//GEN-LAST:event_jFormattedTextField1ActionPerformed
-
-    private void jFormattedTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField2ActionPerformed
-     // Get the text from the formatted field and trim any spaces
-    String amountText = jFormattedTextField2.getText().trim();
-
-    try {
-        // Convert the string to a number (double) to represent the monetary value
-        double amount = Double.parseDouble(amountText);
-        
-        // Check if the amount is greater than 0 (valid amount)
-        if (amount > 0) {
-            // Process the valid amount
-            System.out.println("Valid amount: " + amount);
-            // You can add further code here to handle the amount (e.g., save to a database)
+        // ตรวจสอบข้อมูลในฟิลด์ หมายเลขบัญชี
+        if (!accountNumber.matches("\\d{10}")) {
+            // แสดงข้อผิดพลาดหากหมายเลขบัญชีไม่ถูกต้อง (ต้องเป็นตัวเลข 10 หลัก)
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "หมายเลขบัญชีไม่ถูกต้อง. กรุณาใส่หมายเลขบัญชี 10 หลัก.",
+                    "ข้อผิดพลาด", javax.swing.JOptionPane.ERROR_MESSAGE);
+        } else if (auth.exists(accountNumber) != true) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "ไม่พบหมายเลขบัญชี " + accountNumber,
+                    "ไม่พบผู้ใช้งาน", javax.swing.JOptionPane.WARNING_MESSAGE);
         } else {
-            // Show an error message for negative or zero amounts
-            javax.swing.JOptionPane.showMessageDialog(this, 
-                "Amount must be greater than zero.", 
-                "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            try {
+                // แปลงจำนวนเงินจากข้อความเป็น double
+                double amount = Double.parseDouble(amountText);
+                int confirmDialog = javax.swing.JOptionPane.showConfirmDialog(this, "ยืนยันจำนวนเงินที่ต้องการโอน " + amountText);
+
+                // ตรวจสอบว่าจำนวนเงินต้องมากกว่า 0
+                if (amount <= 0) {
+                    javax.swing.JOptionPane.showMessageDialog(this,
+                            "กรุณากรอกจำนวนเงินที่มากกว่า 0.",
+                            "ข้อผิดพลาด", javax.swing.JOptionPane.ERROR_MESSAGE);
+                } else if (amount > this.account.balance) {
+                    javax.swing.JOptionPane.showMessageDialog(this, "ยอดเงินคงเหลือในบัญชีของคุณไม่เพียงพอ");
+                } else if (confirmDialog == javax.swing.JOptionPane.OK_OPTION) {
+                    this.account.transfer(auth.get(accountNumber), amount);
+                    transferBalanceLabel.setText(this.account.balance + " ฿");
+                    balanceLabel.setText(this.account.balance + " ฿");
+
+                    // ถ้าทุกอย่างถูกต้อง แสดงข้อความยืนยัน
+                    javax.swing.JOptionPane.showMessageDialog(this,
+                            "โอนเงินไปยังหมายเลขบัญชี: " + accountNumber + "\nจำนวนเงิน: " + amount,
+                            "โอนสำเร็จ", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                }
+            } catch (NumberFormatException error) {
+                // แสดงข้อผิดพลาดหากจำนวนเงินไม่ถูกต้อง (ไม่ใช่ตัวเลข)
+                javax.swing.JOptionPane.showMessageDialog(this,
+                        "กรุณากรอกจำนวนเงินที่ถูกต้อง.",
+                        "ข้อผิดพลาด", javax.swing.JOptionPane.ERROR_MESSAGE);
+            }
         }
-    } catch (NumberFormatException e) {
-        // Show an error message if the input is not a valid number
-        javax.swing.JOptionPane.showMessageDialog(this, 
-            "Invalid amount. Please enter a valid number.", 
-            "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-    }
-    }//GEN-LAST:event_jFormattedTextField2ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         // สมมติว่ามีฟิลด์ข้อมูลที่ต้องยืนยัน เช่น หมายเลขบัญชีและจำนวนเงิน
-    String accountNumber = jFormattedTextField1.getText().trim();
-    String amountText = jFormattedTextField2.getText().trim();
-
-    // ตรวจสอบข้อมูลในฟิลด์ หมายเลขบัญชี
-    if (!accountNumber.matches("\\d{10}")) {
-        // แสดงข้อผิดพลาดหากหมายเลขบัญชีไม่ถูกต้อง (ต้องเป็นตัวเลข 10 หลัก)
-        javax.swing.JOptionPane.showMessageDialog(this, 
-            "หมายเลขบัญชีไม่ถูกต้อง. กรุณาใส่หมายเลขบัญชี 10 หลัก.", 
-            "ข้อผิดพลาด", javax.swing.JOptionPane.ERROR_MESSAGE);
-        return; // หยุดการทำงานหากข้อมูลไม่ถูกต้อง
-    }
-
-    try {
-        // แปลงจำนวนเงินจากข้อความเป็น double
-        double amount = Double.parseDouble(amountText);
-
-        // ตรวจสอบว่าจำนวนเงินต้องมากกว่า 0
-        if (amount <= 0) {
-            javax.swing.JOptionPane.showMessageDialog(this, 
-                "กรุณากรอกจำนวนเงินที่มากกว่า 0.", 
-                "ข้อผิดพลาด", javax.swing.JOptionPane.ERROR_MESSAGE);
-            return; // หยุดการทำงานหากข้อมูลไม่ถูกต้อง
-        }
-
-        // ถ้าทุกอย่างถูกต้อง แสดงข้อความยืนยัน
-        javax.swing.JOptionPane.showMessageDialog(this, 
-            "ยืนยันข้อมูลเรียบร้อย!\n\nหมายเลขบัญชี: " + accountNumber + "\nจำนวนเงิน: " + amount,
-            "ยืนยันสำเร็จ", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-
-        // เพิ่มโค้ดอื่น ๆ สำหรับการประมวลผลข้อมูลที่ยืนยันแล้ว เช่น การบันทึกลงฐานข้อมูล
-        System.out.println("ข้อมูลที่ยืนยัน: หมายเลขบัญชี " + accountNumber + ", จำนวนเงิน " + amount);
-
-    } catch (NumberFormatException e) {
-        // แสดงข้อผิดพลาดหากจำนวนเงินไม่ถูกต้อง (ไม่ใช่ตัวเลข)
-        javax.swing.JOptionPane.showMessageDialog(this, 
-            "กรุณากรอกจำนวนเงินที่ถูกต้อง.", 
-            "ข้อผิดพลาด", javax.swing.JOptionPane.ERROR_MESSAGE);
-    }
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       // แสดงการยืนยันการยกเลิกให้กับผู้ใช้
-    int response = javax.swing.JOptionPane.showConfirmDialog(this, 
-        "คุณต้องการยกเลิกการทำงานหรือไม่?", 
-        "ยืนยันการยกเลิก", 
-        javax.swing.JOptionPane.YES_NO_OPTION);
-
-    // หากผู้ใช้เลือก 'ใช่' (YES)
-    if (response == javax.swing.JOptionPane.YES_OPTION) {
-        // ปิดฟอร์มหรือทำการยกเลิกการทำงาน
-        System.out.println("การทำงานถูกยกเลิก");
-        this.dispose();  // ใช้ในการปิดฟอร์มปัจจุบัน
-    } else {
-        // หากผู้ใช้เลือก 'ไม่' (NO) ให้ทำงานต่อไป
-        System.out.println("การทำงานยังดำเนินการต่อ");
-    }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_transferConfirmButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -718,8 +717,16 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFormattedTextField accountNumberFormattedTextField;
+    private javax.swing.JLabel accountNumberLabel;
     private javax.swing.JLabel appLabel;
+    private javax.swing.JLabel balanceLabel;
+    private javax.swing.JLabel balanceNameLabel;
+    private javax.swing.JLabel checkBaanceTitleLabel;
+    private javax.swing.JPanel checkBalanceBodyPanel;
     private javax.swing.JButton checkBalanceButton;
+    private javax.swing.JLabel checkBalanceDescriptionLabel;
+    private javax.swing.JPanel checkBalanceHeaderPanel;
     private javax.swing.JPanel checkBalancePanel;
     private javax.swing.JPanel contentsPanel;
     private javax.swing.JLabel depositAmountLabel;
@@ -727,25 +734,32 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel depositBalanceTextLabel;
     private javax.swing.JPanel depositBodyPanel;
     private javax.swing.JButton depositButton;
-    private javax.swing.JButton depositCancle;
     private javax.swing.JButton depositConfirm;
     private javax.swing.JLabel depositDescriptionLabel;
     private javax.swing.JPanel depositFooterPanel;
     private javax.swing.JPanel depositHeaderPanel;
+    private javax.swing.JLabel depositLabel;
+    private javax.swing.JLabel depositNameLabel;
     private javax.swing.JPanel depositPanel;
     private javax.swing.JSpinner depositSpinner;
     private javax.swing.JLabel depositTitleLabel;
     private javax.swing.JLabel greetingLabel;
     private javax.swing.JPanel greetingPanel;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JPanel sideBarPanel;
     private javax.swing.JButton signOutButton;
+    private javax.swing.JLabel transferAmountLabel;
+    private javax.swing.JLabel transferBalanceLabel;
+    private javax.swing.JLabel transferBalanceTextLabel;
+    private javax.swing.JPanel transferBodyPanel;
     private javax.swing.JButton transferButton;
+    private javax.swing.JButton transferConfirmButton;
+    private javax.swing.JLabel transferDescriptionLabel;
+    private javax.swing.JPanel transferFooterPanel;
+    private javax.swing.JPanel transferHeaderPanel;
     private javax.swing.JPanel transferPanel;
+    private javax.swing.JSpinner transferSpinner;
+    private javax.swing.JLabel transferTitleLabel;
     private javax.swing.JLabel withdrawAmountLabel;
     private javax.swing.JLabel withdrawBalanceLabel;
     private javax.swing.JLabel withdrawBalanceTextLabel;
@@ -755,9 +769,10 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel withdrawDescriptionLabel;
     private javax.swing.JPanel withdrawFooterPanel;
     private javax.swing.JPanel withdrawHeaderPanel;
+    private javax.swing.JLabel withdrawLabel;
+    private javax.swing.JLabel withdrawNameLabel;
     private javax.swing.JPanel withdrawPanel;
     private javax.swing.JSpinner withdrawSpinner;
     private javax.swing.JLabel withdrawTitleLabel;
     // End of variables declaration//GEN-END:variables
 }
-
