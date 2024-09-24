@@ -18,15 +18,15 @@ import java.io.IOException;
  */
 public class Main {
 
-    public static abstract class Bank implements Serializable {
+    public static abstract class Transaction implements Serializable {
 
         protected double balance;
+        protected double deposit;
+        protected double withdraw;
 
-        public Bank(double balance) {
+        public Transaction(double balance) {
             this.balance = balance;
         }
-
-        abstract public double checkBalance();
 
         abstract public void deposit(double amount);
 
@@ -35,9 +35,9 @@ public class Main {
         abstract public void transfer(Account toAccount, double amount);
     }
 
-    public static class Account extends Bank implements Serializable {
+    public static class Account extends Transaction implements Serializable {
 
-        private String id;
+        private final String id;
         private String name;
         private String password;
 
@@ -69,13 +69,9 @@ public class Main {
         }
 
         @Override
-        public double checkBalance() {
-            return this.balance;
-        }
-
-        @Override
         public void deposit(double amount) {
             if (amount > 0) {
+                deposit += amount;
                 this.balance += amount;
             }
         }
@@ -83,7 +79,8 @@ public class Main {
         @Override
         public void withdraw(double amount) {
             if (amount > 0 && this.balance >= amount) {
-                balance -= amount;
+                withdraw -= amount;
+                this.balance -= amount;
             }
         }
 
@@ -96,33 +93,44 @@ public class Main {
         }
     }
 
-    public static class User implements Serializable {
+    public static class Auth implements Serializable {
 
-        private final ArrayList<Account> accounts = new ArrayList<>();
+        private ArrayList<Account> accounts = new ArrayList<>();
 
-        public User() {
+        public Auth() {
             String filename = "accounts.ser";
 
             try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename))) {
                 ArrayList<Account> object = (ArrayList<Account>) in.readObject();
 
                 if (object != null) {
-                    this.accounts.addAll(object);
+                    this.accounts = object;
                 }
-            } catch (IOException e) {
-                System.out.println("Input: IOException is caught");
-            } catch (ClassNotFoundException e) {
-                System.out.println("ClassNotFoundException is caught");
+            } catch (IOException | ClassNotFoundException e) {
+                System.err.println(e.getMessage());
             }
         }
 
-        public boolean exists(String name) {
+        public boolean exists(String text) {
             for (Account account : this.accounts) {
-                if (account.getName().equals(name)) {
+                if (account.getName().equals(text) || account.getID().equals(text)) {
                     return true;
                 }
             }
             return false;
+        }
+
+        public Account get(String text) {
+            for (Account account : this.accounts) {
+                if (account.getName().equals(text) || account.getID().equals(text)) {
+                    return account;
+                }
+            }
+            return null;
+        }
+        
+        public ArrayList<Account> getAccounts() {
+            return this.accounts;
         }
 
         public Account login(String id, String password) {
@@ -151,7 +159,7 @@ public class Main {
                 try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename))) {
                     out.writeObject(this.accounts);
                 } catch (IOException e) {
-                    System.out.println("Output: IOException is caught");
+                    System.err.println(e.getMessage());
                 }
 
                 return account;
